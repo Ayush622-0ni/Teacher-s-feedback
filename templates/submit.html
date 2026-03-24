@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Victory | Feedback Submitted</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        overflow: hidden;
+    }
+
+    /* CONFETTI */
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: gold;
+        animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .card {
+        background: linear-gradient(145deg, #1e293b, #0f172a);
+        color: white;
+        width: 420px;
+        padding: 40px;
+        border-radius: 22px;
+        text-align: center;
+        box-shadow:
+            0 30px 60px rgba(0,0,0,0.6),
+            inset 0 0 20px rgba(0,255,255,0.2);
+        transform-style: preserve-3d;
+        animation: pop 0.9s ease;
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0.6) rotateX(30deg); opacity: 0; }
+        100% { transform: scale(1) rotateX(0); opacity: 1; }
+    }
+
+    .badge {
+        font-size: 70px;
+        margin-bottom: 10px;
+        animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #00ffe7; }
+        to { text-shadow: 0 0 25px #00ffe7; }
+    }
+
+    h2 {
+        font-size: 26px;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+    }
+
+    .sub {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 25px;
+    }
+
+    .reward {
+        background: rgba(0,255,255,0.1);
+        border: 1px solid rgba(0,255,255,0.3);
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .btn {
+        display: inline-block;
+        margin: 8px;
+        padding: 12px 22px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+
+    .hint {
+        margin-top: 18px;
+        font-size: 12px;
+        opacity: 0.6;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- CONFETTI -->
+<script>
+for (let i = 0; i < 40; i++) {
+    let c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDelay = Math.random() * 3 + "s";
+    c.style.background = ["#00ffe7", "#ffd700", "#ff4ecd"][Math.floor(Math.random()*3)];
+    document.body.appendChild(c);
+}
+</script>
+
+<div class="card">
+    <div class="badge">🏆</div>
+
+    <h2>MISSION COMPLETE</h2>
+    <div class="sub">Feedback successfully submitted</div>
+
+    <div class="reward">
+        🎉 +100 XP Earned<br>
+        🛡️ Contribution Recorded<br>
+        🚀 Quality Improved
+    </div>
+
+    <a href="/feedback" class="btn">PLAY AGAIN</a>
+    <a href="/" class="btn">RETURN HOME</a>
+
+    <div class="hint">Tap anywhere to claim victory sound 🔊</div>
+</div>
+
+<!-- 🔊 VICTORY SOUND -->
+<audio id="victorySound">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-video-game-win-2016.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener("click", () => {
+    document.getElementById("victorySound").play();
+}, { once: true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Feedback System</title>
+
+    <style>
+        /* ===== GLOBAL RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            background-color: #f5f7fb;
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER / HERO ===== */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 70px 20px;
+        }
+
+        header .container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 46px;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            opacity: 0.95;
+            max-width: 520px;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+        }
+
+        .hero-buttons a {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #1e3c72;
+        }
+
+        .btn-primary:hover {
+            background: #e9edff;
+        }
+
+        .btn-secondary {
+            border: 2px solid rgba(255,255,255,0.7);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 34px;
+            margin-bottom: 15px;
+            color: #1e3c72;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: auto;
+            color: #555;
+            font-size: 17px;
+        }
+
+        /* ===== FEATURES ===== */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #2a5298;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0f172a;
+            color: #9ca3af;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        footer span {
+            color: #ffffff;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ===== HERO SECTION ===== -->
+<header>
+    <div class="container">
+
+        <div class="hero-text">
+            <h1>Teacher Feedback System</h1>
+            <p>
+                A professional platform where students can share honest feedback
+                to help educators improve teaching quality and learning outcomes.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="/register" class="btn-primary">Register Yourself</a>
+                <a href="/admin_portal" class="btn-secondary">Admin Portal</a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="/static/images/group photo.jpeg" alt="Teacher Feedback">
+        </div>
+
+    </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<section class="main">
+
+    <h2 class="section-title">Why Feedback Matters</h2>
+    <p class="section-subtitle">
+        Constructive feedback plays a key role in enhancing teaching standards
+        and creating a positive academic environment.
+    </p>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <h3>Improve Teaching Quality</h3>
+            <p>
+                Enables teachers to understand student expectations and refine
+                teaching methods accordingly.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Student Voice</h3>
+            <p>
+                Gives every student a secure and respectful platform to express
+                their learning experience.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Better Learning Environment</h3>
+            <p>
+                Encourages transparency, trust, and continuous improvement
+                within institutions.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    © 2026 <span>Teacher Feedback System</span> | Designed with professionalism
+</footer>
+
+</body>
+</html>

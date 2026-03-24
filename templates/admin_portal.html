@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login | Teacher Feedback System</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(58, 123, 213, 0.9),
+                    rgba(0, 210, 255, 0.9)
+                ),
+                url("/static/images/por.jpg");
+            background-size: 120%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 380px;
+            padding: 40px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            color: #fff;
+        }
+
+        .login-card h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+
+        .login-card p {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 30px;
+            color: #eaeaea;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            box-shadow: 0 0 0 2px #00d2ff;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            color: #fff;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-card">
+    <h2>Admin Portal</h2>
+    <p>Authorized access only</p>
+
+    <!-- ✅ FORM CONNECTED TO FLASK -->
+    <form action="/portal" method="POST"
+          onsubmit="return adminLogin()" autocomplete="off">
+
+        <div class="form-group">
+            <label>Admin Name</label>
+            <input type="text"
+                   id="admin_name"
+                   name="admin_name"
+                   placeholder="Enter admin username"
+                   required
+                   autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   placeholder="Enter password"
+                   required
+                   autocomplete="new-password">
+        </div>
+
+        <button class="login-btn" type="submit">Enter</button>
+    </form>
+
+    <div class="footer">
+        © 2026 Teacher Feedback System
+    </div>
+</div>
+
+<!-- ✅ ADMIN CHECK -->
+<script>
+    function adminLogin() {
+
+        // 🔐 CHANGE YOUR ADMIN CREDENTIALS HERE
+        const ADMIN_NAME = "0241cs022";
+        const ADMIN_PASS = "Ayush@123";
+
+        let name = document.getElementById("admin_name").value.trim();
+        let pass = document.getElementById("password").value;
+
+        if (name === ADMIN_NAME && pass === ADMIN_PASS) {
+            alert("✅ Welcome Admin!");
+            return true;   // ✅ allow Flask to open /portal
+        } else {
+            alert("❌ Invalid Admin Name or Password");
+            return false;  // ❌ block access
+        }
+    }
+</script>
+
+</body>
+</html>

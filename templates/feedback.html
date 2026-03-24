@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Feedback Panel</title>
+
+    <style>
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* ===== WATERMARK BACKGROUND ===== */
+            /* 🔴 CHANGE IMAGE PATH HERE */
+            /* 🔴 TO REMOVE IMAGE, DELETE url(...) PART */
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(30, 60, 114, 0.9),
+                    rgba(42, 82, 152, 0.9)
+                ),
+                url("/static/images/group photo.jpeg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* ===== FEEDBACK CARD ===== */
+        .feedback-card {
+            width: 100%;
+            max-width: 480px;
+            padding: 35px;
+            border-radius: 18px;
+
+            /* Glassmorphism */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(6px);
+
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: #1e3c72;
+        }
+
+        /* ===== FORM ELEMENTS ===== */
+        label {
+            display: block;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        /* ===== STAR RATING ===== */
+        .rating {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+
+        .rating label {
+            font-size: 18px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .rating input {
+            margin-right: 4px;
+        }
+
+        /* ===== BUTTON ===== */
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
+
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="feedback-card">
+    <h2>Teacher Feedback Form</h2>
+
+    <form action="/submit" method="POST">
+
+        <!-- Teacher -->
+        <label>Select Teacher</label>
+        <select id="teacher" name="teacher" onchange="fillSubject()" required>
+            <option value="">Choose Teacher</option>
+            <option value="Neeshu Niharika Mam">Neeshu Niharika Mam</option>
+            <option value="Ajay kumar">Ajay Kumar</option>
+            <option value="Anurag Mishra">Anurag Mishra</option>
+            <option value="Kanika mam">Kanika Mam</option>
+        </select>
+
+        <!-- Subject -->
+        <label>Subject</label>
+        <input type="text" id="subject" name="subject" readonly>
+
+        <!-- Rating -->
+        <label>Overall Rating</label>
+        <div class="rating">
+            <label><input type="radio" name="rating" value="1" required> ⭐</label>
+            <label><input type="radio" name="rating" value="2"> ⭐⭐</label>
+            <label><input type="radio" name="rating" value="3"> ⭐⭐⭐</label>
+            <label><input type="radio" name="rating" value="4"> ⭐⭐⭐⭐</label>
+            <label><input type="radio" name="rating" value="5"> ⭐⭐⭐⭐⭐</label>
+        </div>
+
+        <!-- Teaching Quality -->
+        <label>Teaching Quality</label>
+        <select name="teaching_quality" required>
+            <option value="">Select</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Average">Average</option>
+            <option value="Poor">Poor</option>
+        </select>
+
+        <!-- Communication -->
+        <label>Communication Skills</label>
+        <select name="communication_skill" required>
+            <option value="">Select</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Average">Average</option>
+            <option value="Poor">Poor</option>
+        </select>
+
+        <!-- Punctuality -->
+        <label>Punctuality</label>
+        <select name="punctuality" required>
+            <option value="">Select</option>
+            <option value="Always On Time">Always On Time</option>
+            <option value="Mostly On Time">Mostly On Time</option>
+            <option value="Sometimes Late">Sometimes Late</option>
+        </select>
+
+        <!-- Feedback -->
+        <label>Suggestions / Feedback</label>
+        <textarea name="feedback" rows="4" placeholder="Write your feedback..." required></textarea>
+
+        <button type="submit">Submit Feedback</button>
+
+    </form>
+</div>
+
+<script>
+    function fillSubject() {
+        const teacher = document.getElementById("teacher").value;
+        const subject = document.getElementById("subject");
+
+        /* 🔴 CHANGE SUBJECT MAPPING HERE */
+        if (teacher === "Neeshu Niharika Mam") {
+            subject.value = "Cloud Computing";
+        } else if (teacher === "Ajay kumar") {
+            subject.value = "Java Lab";
+        } else if (teacher === "Anurag Mishra") {
+            subject.value = "DSA";
+        } else if (teacher === "Kanika mam") {
+            subject.value = "High Performance Computing";
+        } else {
+            subject.value = "";
+        }
+    }
+</script>
+
+</body>
+</html>
