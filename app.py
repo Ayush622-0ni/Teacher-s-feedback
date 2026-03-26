@@ -6,10 +6,10 @@ app = Flask(__name__)
 
 # ================= DATABASE CONNECTION =================
 
-DATABASE_URL = os.environ.get("DATABASE_URL") 
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
 def get_connection():
-    return psycopg2.connect(DATABASE_URL)
+    return psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # ================= ROUTES =================
 
@@ -27,29 +27,33 @@ def feedback():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    te = request.form['teacher']
-    su = request.form['subject']
-    ra = request.form['rating']
-    teaching = request.form['teaching_quality']
-    communication = request.form['communication_skill']
-    pu = request.form['punctuality']
-    feed = request.form['feedback']
+    try:
+        te = request.form['teacher']
+        su = request.form['subject']
+        ra = request.form['rating']
+        teaching = request.form['teaching_quality']
+        communication = request.form['communication_skill']
+        pu = request.form['punctuality']
+        feed = request.form['feedback']
 
-    conn = get_connection()
-    cur = conn.cursor()
+        conn = get_connection()
+        cur = conn.cursor()
 
-    cur.execute("""
-        INSERT INTO feedback_data 
-        (teacher_name, subject, rating, teaching_quality,
-         communication_skill, punctuality, feedback)
-        VALUES (%s,%s,%s,%s,%s,%s,%s)
-    """, (te, su, ra, teaching, communication, pu, feed))
+        cur.execute("""
+            INSERT INTO feedback_data 
+            (teacher_name, subject, rating, teaching_quality,
+             communication_skill, punctuality, feedback)
+            VALUES (%s,%s,%s,%s,%s,%s,%s)
+        """, (te, su, ra, teaching, communication, pu, feed))
 
-    conn.commit()
-    cur.close()
-    conn.close()
+        conn.commit()
+        cur.close()
+        conn.close()
 
-    return render_template('submit.html')
+        return render_template('submit.html')
+
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 @app.route('/admin_portal')
 def admin_portal():
@@ -57,16 +61,20 @@ def admin_portal():
 
 @app.route('/portal', methods=['GET','POST'])
 def portal():
-    conn = get_connection()
-    cur = conn.cursor()
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
 
-    cur.execute("SELECT * FROM feedback_data")
-    data = cur.fetchall()
+        cur.execute("SELECT * FROM feedback_data")
+        data = cur.fetchall()
 
-    cur.close()
-    conn.close()
+        cur.close()
+        conn.close()
 
-    return render_template('portal.html', himan=data)
+        return render_template('portal.html', himan=data)
+
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 # ================= RUN =================
 
